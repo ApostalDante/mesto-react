@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
   };
 
-  _responseProcessingServer(res) {
+  _checkResponseProcessingServer(res) {
     if (res.ok) {
       return res.json();
     } else {
@@ -17,7 +17,7 @@ class Api {
       headers: this._headers,
       method: 'GET',
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   addNewCardToServer({ name, link }) {
@@ -27,7 +27,7 @@ class Api {
       body: JSON.stringify({ name, link })
     })
 
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   deleteCardInServer(cardId) {
@@ -35,7 +35,7 @@ class Api {
       headers: this._headers,
       method: 'DELETE',
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   getProfileDataInServer() {
@@ -43,7 +43,7 @@ class Api {
       headers: this._headers,
       method: 'GET',
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   sendProfileDataToServer(profileData) {
@@ -52,7 +52,7 @@ class Api {
       method: 'PATCH',
       body: JSON.stringify({ name: profileData['user-name'], about: profileData['user-myself'] })
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   sendAvatarDataToServer(avatarData) {
@@ -61,7 +61,7 @@ class Api {
       method: 'PATCH',
       body: JSON.stringify({ avatar: avatarData['avatar-url'] })
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   sendLikeCardToServer(cardId) {
@@ -69,7 +69,7 @@ class Api {
       headers: this._headers,
       method: 'PUT',
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 
   deleteLikeCardToServer(cardId) {
@@ -77,7 +77,7 @@ class Api {
       headers: this._headers,
       method: 'DELETE',
     })
-      .then(res => { return this._responseProcessingServer(res); })
+      .then(res => { return this._checkResponseProcessingServer(res); })
   };
 };
 
